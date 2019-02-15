@@ -1,29 +1,9 @@
 import csv
-from functools import reduce
-
-class Model :
-    def __init__(self, id, age, workclass, education, marital_status, occupation, relationship, hpw, income):
-        self.id = id
-        self.age = age
-        self.workclass = workclass
-        self.education = education
-        self.marital_status = marital_status
-        self.occupation = occupation
-        self.relationship = relationship
-        self.hpw = hpw
-        self.income = income
-
-    def addIncome(self, income):
-        self.income = income
-
-#--==============================^^Model^^==============================--
 
 attributes = [[[],[],[]], [[],[],[]], [[],[],[]], [[],[],[]], [[],[],[]], [[],[],[]], [[],[],[]], [[],[]]]
-models_train = []
 model_arrays_train = []
 index_b = [0,0,0,0,0,0,0,0]
 temp_50K = []
-
 b_bawah = [0,0]
 models_test = []
 
@@ -35,18 +15,17 @@ def importTrain():
             if line_count == 0:
                 line_count += 1
             else:
-                models_train.append(Model(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8])) # pemodelan
                 model_arrays_train.append([row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8]]) # untuk permudah index
                 line_count += 1
-    for model in models_train:
-        setAttribute(0,model.age)
-        setAttribute(1,model.workclass)
-        setAttribute(2,model.education)
-        setAttribute(3,model.marital_status)
-        setAttribute(4,model.occupation)
-        setAttribute(5,model.relationship)
-        setAttribute(6,model.hpw)
-        setAttribute(7,model.income)
+    for model in model_arrays_train:
+        setAttribute(0,model[1])
+        setAttribute(1,model[2])
+        setAttribute(2,model[3])
+        setAttribute(3,model[4])
+        setAttribute(4,model[5])
+        setAttribute(5,model[6])
+        setAttribute(6,model[7])
+        setAttribute(7,model[8])
 
 def importTest():
     with open('res/TestsetTugas1ML.csv') as csvfile:
